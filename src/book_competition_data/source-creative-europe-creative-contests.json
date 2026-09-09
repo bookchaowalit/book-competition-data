@@ -1,0 +1,41 @@
+{
+  "id": "creative-europe-creative-contests",
+  "product": "book-competition-data",
+  "domain": "competition",
+  "schema_version": "competition.v1",
+  "fetch_url": "https://culture.ec.europa.eu/calls",
+  "source_url": "https://culture.ec.europa.eu/calls",
+  "access": "html",
+  "content_type": "text/html",
+  "category": "creative-contest",
+  "provider": "European Commission / Culture and Creativity",
+  "title": "Creative Europe culture calls",
+  "required_markers": [
+    "calls and funding opportunities",
+    "creative europe programme"
+  ],
+  "generic_html": true,
+  "eligible_countries": [
+    "GLOBAL"
+  ],
+  "eligibility_text": "European Commission culture funding calls used for creative opportunity discovery; each call defines eligible applicants and deadlines.",
+  "value_kind": "cash",
+  "value_amount": null,
+  "value_currency": null,
+  "value_guaranteed": null,
+  "cost_notes": "The adapter records only public programme metadata. Confirm current eligibility, price, availability and terms at the official source.",
+  "normalized_terms": {
+    "judging_criteria": "Programme-specific peer review criteria apply.",
+    "team_allowed": true,
+    "submission_format": "Submit through the programme-specific Creative Europe application process.",
+    "ip_terms": "Review the current Creative Europe call and award conditions."
+  },
+  "enabled": true,
+  "permission_status": "reviewed-public-read",
+  "reviewed_at": "2026-09-08",
+  "permission_evidence": "https://culture.ec.europa.eu/robots.txt",
+  "owner": "bookchaowalit",
+  "min_interval_seconds": 21600,
+  "retention": "private local raw archive; operational retention; no automatic deletion",
+  "use": "public competition metadata for personal discovery; no source-body republication"
+}

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "book-competition-data"
+version = "0.1.0"
+description = "Find competitions with relevant deliverables, judging and prize terms."
+requires-python = ">=3.10"
+dependencies = ["jsonschema==4.19.2"]
+
+[project.scripts]
+book-competition-data = "book_competition_data.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+book_competition_data = ["*.json"]

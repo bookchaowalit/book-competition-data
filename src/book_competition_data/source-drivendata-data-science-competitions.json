@@ -1,0 +1,41 @@
+{
+  "id": "drivendata-data-science-competitions",
+  "product": "book-competition-data",
+  "domain": "competition",
+  "schema_version": "competition.v1",
+  "fetch_url": "https://www.drivendata.org/competitions/",
+  "source_url": "https://www.drivendata.org/competitions/",
+  "access": "html",
+  "content_type": "text/html",
+  "category": "data-science",
+  "provider": "DrivenData",
+  "title": "DrivenData data science competitions",
+  "required_markers": [
+    "data science",
+    "competitions"
+  ],
+  "generic_html": true,
+  "eligible_countries": [
+    "GLOBAL"
+  ],
+  "eligibility_text": "DrivenData public data-science competition directory; each competition sets its own data, eligibility and prize terms.",
+  "value_kind": "unknown",
+  "value_amount": null,
+  "value_currency": null,
+  "value_guaranteed": null,
+  "cost_notes": "The adapter records only public programme metadata. Confirm current eligibility, price, availability and terms at the official source.",
+  "normalized_terms": {
+    "judging_criteria": "Competition-specific leaderboard and judging criteria apply.",
+    "team_allowed": true,
+    "submission_format": "Submit model or solution through the competition platform.",
+    "ip_terms": "Review the current competition rules for data and solution rights."
+  },
+  "enabled": true,
+  "permission_status": "reviewed-public-read",
+  "reviewed_at": "2026-09-08",
+  "permission_evidence": "https://www.drivendata.org/robots.txt",
+  "owner": "bookchaowalit",
+  "min_interval_seconds": 21600,
+  "retention": "private local raw archive; operational retention; no automatic deletion",
+  "use": "public competition metadata for personal discovery; no source-body republication"
+}

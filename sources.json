@@ -1,0 +1,20 @@
+{
+  "domain": "competition",
+  "enabled_sources": [
+    "nasa-space-apps-2026",
+    "cassini-challenges-2026",
+    "nasa-prizes-innovation-challenges",
+    "creative-europe-creative-contests",
+    "drivendata-data-science-competitions"
+  ],
+  "enabled_category_capabilities": ["hackathon", "innovation-challenge", "creative-contest", "data-science", "entrepreneurship"],
+  "candidate_source_classes": [
+    "official program API or export",
+    "official RSS or announcement feed",
+    "official public program page"
+  ],
+  "permission_status": "reviewed-public-read",
+  "network_enabled": true,
+  "policy_file": "src/book_competition_data/source.json",
+  "notes": "Five manually invoked official sources. Six-hour minimum interval. Exact deadlines, judging and prize terms remain source-specific claims."
+}

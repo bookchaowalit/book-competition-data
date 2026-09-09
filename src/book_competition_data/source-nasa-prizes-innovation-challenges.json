@@ -1,0 +1,41 @@
+{
+  "id": "nasa-prizes-innovation-challenges",
+  "product": "book-competition-data",
+  "domain": "competition",
+  "schema_version": "competition.v1",
+  "fetch_url": "https://www.nasa.gov/prizes-challenges-and-crowdsourcing/",
+  "source_url": "https://www.nasa.gov/prizes-challenges-and-crowdsourcing/",
+  "access": "html",
+  "content_type": "text/html",
+  "category": "innovation-challenge",
+  "provider": "NASA",
+  "title": "NASA prizes and innovation challenges",
+  "required_markers": [
+    "prizes",
+    "challenges"
+  ],
+  "generic_html": true,
+  "eligible_countries": [
+    "GLOBAL"
+  ],
+  "eligibility_text": "NASA prizes and challenge directory; each challenge sets its own eligibility, dates, judging and award terms.",
+  "value_kind": "unknown",
+  "value_amount": null,
+  "value_currency": null,
+  "value_guaranteed": null,
+  "cost_notes": "The adapter records only public programme metadata. Confirm current eligibility, price, availability and terms at the official source.",
+  "normalized_terms": {
+    "judging_criteria": "Challenge-specific criteria are defined in each current NASA challenge brief.",
+    "team_allowed": true,
+    "submission_format": "Challenge-specific submission flow defined by NASA.",
+    "ip_terms": "Review the current NASA challenge rules for intellectual-property and award terms."
+  },
+  "enabled": true,
+  "permission_status": "reviewed-public-read",
+  "reviewed_at": "2026-09-08",
+  "permission_evidence": "https://www.nasa.gov/robots.txt",
+  "owner": "bookchaowalit",
+  "min_interval_seconds": 21600,
+  "retention": "private local raw archive; operational retention; no automatic deletion",
+  "use": "public competition metadata for personal discovery; no source-body republication"
+}

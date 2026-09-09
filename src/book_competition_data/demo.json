@@ -1,0 +1,131 @@
+{
+  "schema_version": "competition.v1",
+  "source": "book-competition-data",
+  "retrieved_at": "2026-09-07T00:00:00Z",
+  "data_status": "fixture",
+  "items": [
+    {
+      "id": "competition-demo-open",
+      "title": "Synthetic Competitions and prizes example",
+      "category": "hackathon",
+      "source_url": "https://example.org/competition/demo",
+      "provider": "Synthetic provider",
+      "status": "open",
+      "deadline": {
+        "kind": "fixed",
+        "at": "2026-09-08T00:00:00Z"
+      },
+      "eligible_countries": [],
+      "eligibility_text": "Unknown; this synthetic example does not establish eligibility.",
+      "value": {
+        "kind": "unknown",
+        "amount": null,
+        "currency": null,
+        "guaranteed": null
+      },
+      "cost": {
+        "fee_amount": null,
+        "currency": null,
+        "auto_renewal": null,
+        "notes": "Unknown; no claim of zero cost."
+      },
+      "terms": {
+        "judging_criteria": "Synthetic example; verify official terms before use.",
+        "team_allowed": false,
+        "submission_format": "Synthetic example; verify official terms before use.",
+        "ip_terms": "Synthetic example; verify official terms before use."
+      },
+      "related_records": [],
+      "provenance": {
+        "evidence_kind": "fixture",
+        "source_id": "synthetic-fixture",
+        "source_record_id": "competition-demo-open",
+        "checked_at": "2026-09-07T00:00:00Z",
+        "raw_object_key": null,
+        "bronze_manifest_key": null
+      }
+    },
+    {
+      "id": "competition-demo-closed",
+      "title": "Synthetic Competitions and prizes example",
+      "category": "hackathon",
+      "source_url": "https://example.org/competition/demo",
+      "provider": "Synthetic provider",
+      "status": "closed",
+      "deadline": {
+        "kind": "fixed",
+        "at": "2026-09-06T00:00:00Z"
+      },
+      "eligible_countries": [],
+      "eligibility_text": "Unknown; this synthetic example does not establish eligibility.",
+      "value": {
+        "kind": "unknown",
+        "amount": null,
+        "currency": null,
+        "guaranteed": null
+      },
+      "cost": {
+        "fee_amount": null,
+        "currency": null,
+        "auto_renewal": null,
+        "notes": "Unknown; no claim of zero cost."
+      },
+      "terms": {
+        "judging_criteria": "Synthetic example; verify official terms before use.",
+        "team_allowed": false,
+        "submission_format": "Synthetic example; verify official terms before use.",
+        "ip_terms": "Synthetic example; verify official terms before use."
+      },
+      "related_records": [],
+      "provenance": {
+        "evidence_kind": "fixture",
+        "source_id": "synthetic-fixture",
+        "source_record_id": "competition-demo-closed",
+        "checked_at": "2026-09-07T00:00:00Z",
+        "raw_object_key": null,
+        "bronze_manifest_key": null
+      }
+    },
+    {
+      "id": "competition-demo-unknown",
+      "title": "Synthetic Competitions and prizes example",
+      "category": "hackathon",
+      "source_url": "https://example.org/competition/demo",
+      "provider": "Synthetic provider",
+      "status": "unknown",
+      "deadline": {
+        "kind": "unknown",
+        "at": null
+      },
+      "eligible_countries": [],
+      "eligibility_text": "Unknown; this synthetic example does not establish eligibility.",
+      "value": {
+        "kind": "unknown",
+        "amount": null,
+        "currency": null,
+        "guaranteed": null
+      },
+      "cost": {
+        "fee_amount": null,
+        "currency": null,
+        "auto_renewal": null,
+        "notes": "Unknown; no claim of zero cost."
+      },
+      "terms": {
+        "judging_criteria": "Synthetic example; verify official terms before use.",
+        "team_allowed": false,
+        "submission_format": "Synthetic example; verify official terms before use.",
+        "ip_terms": "Synthetic example; verify official terms before use."
+      },
+      "related_records": [],
+      "provenance": {
+        "evidence_kind": "fixture",
+        "source_id": "synthetic-fixture",
+        "source_record_id": "competition-demo-unknown",
+        "checked_at": "2026-09-07T00:00:00Z",
+        "raw_object_key": null,
+        "bronze_manifest_key": null
+      }
+    }
+  ]
+}
