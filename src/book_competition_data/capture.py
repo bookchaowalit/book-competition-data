@@ -17,11 +17,11 @@ class Text(HTMLParser):
         self.hidden = 0
 
     def handle_starttag(self, tag, attrs):
-        if tag in {"script", "style"}:
+        if tag in {"script", "style", "noscript", "svg"}:
             self.hidden += 1
 
     def handle_endtag(self, tag):
-        if tag in {"script", "style"}:
+        if tag in {"script", "style", "noscript", "svg"}:
             self.hidden = max(0, self.hidden - 1)
 
     def handle_data(self, value):

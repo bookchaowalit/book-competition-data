@@ -25,3 +25,6 @@ Current state: **7/10** (pass 1: 5 -> 6.5; pass 2: 6.5 -> 7). Offline contract, 
   `source_config("nasa-space-apps-2026")`, so drift fails CI. README documents the rule.
 - Drift markers for the two weak sources were left unchanged: stronger phrases need a
   reviewed live capture.
+- Drift guard: the HTML text extractor now also ignores `<noscript>` and `<svg>` (matching
+  the sibling creator/deal/learning/mobility/paid-study/partnership/startup adapters), so
+  markers hidden there cannot pass a challenge page; `tests/test_text_extraction.py`.
