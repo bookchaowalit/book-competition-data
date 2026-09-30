@@ -59,7 +59,10 @@ screening answers, financial credentials, cookies, or private transcripts.
 See `sources.json`, `src/book_competition_data/source-nasa-space-apps-2026.json`
 and `src/book_competition_data/source-cassini-challenges-2026.json`. The NASA
 directory and EUSPA CASSINI pages are reviewed for public read access and are
-captured only for bounded program metadata. No spending, account creation or
+captured only for bounded program metadata. `source.json` (the registry
+`policy_file` and the default when `--source-id` is omitted) must stay
+byte-identical to `source-nasa-space-apps-2026.json`; `tests/test_registry.py`
+fails if the two drift, so edit both together. No spending, account creation or
 messaging.
 
 Implemented flow: approved source pull → immutable landing bytes and checksum →

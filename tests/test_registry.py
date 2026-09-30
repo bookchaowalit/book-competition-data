@@ -87,6 +87,17 @@ class RegistryTests(unittest.TestCase):
                     self.assertEqual(name, "source-" + source["id"] + ".json")
                     self.assertIn(source["id"], REGISTRY["enabled_sources"])
 
+    def test_default_policy_is_byte_identical_to_its_per_source_copy(self):
+        # source.json is the registry's policy_file and the no-flag CLI default;
+        # source-<id>.json is what --source-id loads. They must never drift.
+        package = files("book_competition_data")
+        default = package.joinpath("source.json").read_bytes()
+        source_id = json.loads(default)["id"]
+        self.assertIn(source_id, REGISTRY["enabled_sources"])
+        copy = package.joinpath("source-" + source_id + ".json").read_bytes()
+        self.assertEqual(default, copy, "edit both files together (or copy one over the other)")
+        self.assertEqual(source_config(), source_config(source_id))
+
     def test_category_capabilities_exist_in_contract(self):
         allowed = set()
         for source_id in REGISTRY["enabled_sources"]:
