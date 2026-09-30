@@ -40,7 +40,7 @@ class SourceTests(unittest.TestCase):
             "<p>12 winners get a €100,000 prize award to accelerate their growth.</p>"
             "<p>Technology Readiness Level (TRL) ≥ 5 and Commercial Readiness Level (CRL) ≥ 4.</p>"
             "<p>September - October 2026</p><p>Rules of contest</p>"
-        ).encode("utf-8")
+        ).encode()
         data = normalize(raw, source, "2026-09-07T00:00:00Z")
         item = data["items"][0]
         item["provenance"].update(
