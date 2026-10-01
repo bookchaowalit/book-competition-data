@@ -31,7 +31,13 @@ book-competition-data demo --open-only
 book-competition-data demo --query "hackathon"
 book-competition-data validate src/book_competition_data/demo.json
 python -m unittest discover -s tests -v
+python -m pip install -e ".[dev]"  # pytest + pinned ruff
+ruff check . && python -m pytest -q
 ```
+
+CI (`.github/workflows/ci.yml`) runs `ruff check`, the offline test suite and a
+CLI smoke test on Python 3.10 and 3.13. `tests/test_registry.py` keeps
+`sources.json`, the packaged `source*.json` configs and the contract in sync.
 
 With dependencies already available, use `PYTHONPATH=src python3 -m book_competition_data`.
 `demo` uses the fixed synthetic clock 2026-09-07T00:00:00Z unless `--as-of` is
@@ -53,7 +59,10 @@ screening answers, financial credentials, cookies, or private transcripts.
 See `sources.json`, `src/book_competition_data/source-nasa-space-apps-2026.json`
 and `src/book_competition_data/source-cassini-challenges-2026.json`. The NASA
 directory and EUSPA CASSINI pages are reviewed for public read access and are
-captured only for bounded program metadata. No spending, account creation or
+captured only for bounded program metadata. `source.json` (the registry
+`policy_file` and the default when `--source-id` is omitted) must stay
+byte-identical to `source-nasa-space-apps-2026.json`; `tests/test_registry.py`
+fails if the two drift, so edit both together. No spending, account creation or
 messaging.
 
 Implemented flow: approved source pull → immutable landing bytes and checksum →

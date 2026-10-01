@@ -3,11 +3,19 @@ import argparse
 import os
 import re
 import sys
-from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 
-from .cli import resource, validate
+from .cli import resource, timestamp, validate
+
+# CASSINI publishes a "September - October 2026" window for an EU (Brussels-time)
+# programme. As instants: 1 Sep 00:00 CEST (UTC+2) up to 1 Nov 00:00 CET (UTC+1,
+# summer time ends 25 Oct 2026). Fixed offsets avoid a tzdata dependency.
+CASSINI_WINDOW_OPENS = "2026-09-01T00:00:00+02:00"
+CASSINI_WINDOW_ENDS = "2026-11-01T00:00:00+01:00"
+# The NASA Space Apps event runs 14-15 November 2026; status stays "open" only
+# until the end of 15 November UTC and becomes "unknown" (never "closed") after.
+NASA_SPACE_APPS_OPEN_UNTIL = "2026-11-16T00:00:00Z"
 
 
 class Text(HTMLParser):
@@ -17,11 +25,11 @@ class Text(HTMLParser):
         self.hidden = 0
 
     def handle_starttag(self, tag, attrs):
-        if tag in {"script", "style"}:
+        if tag in {"script", "style", "noscript", "svg"}:
             self.hidden += 1
 
     def handle_endtag(self, tag):
-        if tag in {"script", "style"}:
+        if tag in {"script", "style", "noscript", "svg"}:
             self.hidden = max(0, self.hidden - 1)
 
     def handle_data(self, value):
@@ -68,7 +76,9 @@ def normalize(raw, source, checked_at):
     parser = Text()
     parser.feed(raw.decode("utf-8"))
     text = " ".join(" ".join(parser.parts).split())
-    now = datetime.fromisoformat(checked_at.replace("Z", "+00:00"))
+    # Strict RFC3339 with an offset: a naive clock would compare host-local time
+    # as if it were UTC (or raise TypeError against the aware window bounds).
+    now = timestamp(checked_at)
     if source["id"] == "cassini-challenges-2026":
         required = (
             "CASSINI Challenges 2026",
@@ -83,7 +93,8 @@ def normalize(raw, source, checked_at):
         # The page publishes a September–October application window but no
         # exact timestamp. Keep the deadline unknown rather than inventing one.
         deadline = {"kind": "unknown", "at": None}
-        status = "open" if now.date().isoformat() >= "2026-09-01" and now.date().isoformat() <= "2026-10-31" else "unknown"
+        opens, ends = timestamp(CASSINI_WINDOW_OPENS), timestamp(CASSINI_WINDOW_ENDS)
+        status = "open" if opens <= now < ends else "unknown"
         title = "CASSINI Challenges 2026"
         countries = []
         eligibility = (
@@ -119,7 +130,7 @@ def normalize(raw, source, checked_at):
         # submission cutoff or prize amount on this page. Keep both unknown rather
         # than turning the event end date into an invented deadline.
         deadline = {"kind": "rolling", "at": None}
-        status = "open" if now < datetime(2026, 11, 15, 23, 59, tzinfo=timezone.utc) else "unknown"
+        status = "open" if now < timestamp(NASA_SPACE_APPS_OPEN_UNTIL) else "unknown"
         title = "2026 NASA Space Apps Challenge"
         countries = ["GLOBAL"]
         eligibility = "NASA describes this as an open global hackathon for anyone interested in space and science; verify registration and local-event requirements before entering."
