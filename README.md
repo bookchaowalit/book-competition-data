@@ -92,11 +92,11 @@ exact source configuration lives at
 Run with the existing data-lake Python environment:
 
 ```bash
-export SOLO_EMPIRE_ROOT=/home/bookchaowalit/book/solo-empire
-PYTHONPATH=src "$SOLO_EMPIRE_ROOT/infra/.venv-datalake/bin/python" -m book_competition_data.capture acquire --lake "$PWD/data/lake" --state-dir "$PWD/data/control"
-PYTHONPATH=src "$SOLO_EMPIRE_ROOT/infra/.venv-datalake/bin/python" -m book_competition_data.capture records --lake "$PWD/data/lake" --state-dir "$PWD/data/control"
-PYTHONPATH=src "$SOLO_EMPIRE_ROOT/infra/.venv-datalake/bin/python" -m book_competition_data.capture --source-id cassini-challenges-2026 acquire --lake "$PWD/data/lake" --state-dir "$PWD/data/control"
-PYTHONPATH=src "$SOLO_EMPIRE_ROOT/infra/.venv-datalake/bin/python" -m book_competition_data.capture --source-id cassini-challenges-2026 records --lake "$PWD/data/lake" --state-dir "$PWD/data/control"
+export SOLO_DATA_LAKE_ROOT=/path/to/solo-data-lake
+PYTHONPATH=src "$SOLO_DATA_LAKE_ROOT/.venv/bin/python" -m book_competition_data.capture acquire --lake "$PWD/data/lake" --state-dir "$PWD/data/control"
+PYTHONPATH=src "$SOLO_DATA_LAKE_ROOT/.venv/bin/python" -m book_competition_data.capture records --lake "$PWD/data/lake" --state-dir "$PWD/data/control"
+PYTHONPATH=src "$SOLO_DATA_LAKE_ROOT/.venv/bin/python" -m book_competition_data.capture --source-id cassini-challenges-2026 acquire --lake "$PWD/data/lake" --state-dir "$PWD/data/control"
+PYTHONPATH=src "$SOLO_DATA_LAKE_ROOT/.venv/bin/python" -m book_competition_data.capture --source-id cassini-challenges-2026 records --lake "$PWD/data/lake" --state-dir "$PWD/data/control"
 ```
 
 The lane depends on the explicit local `discovery.capture_runtime` v1. Capture
