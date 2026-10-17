@@ -1,4 +1,5 @@
 """Capture one explicit official competition source through the shared lake runtime."""
+
 import argparse
 import os
 import re
@@ -38,38 +39,59 @@ class Text(HTMLParser):
 
 
 def _normalize_generic(raw, source, checked_at):
-    parser = Text(); parser.feed(raw.decode('utf-8'))
-    text = ' '.join(' '.join(parser.parts).split())
+    parser = Text()
+    parser.feed(raw.decode("utf-8"))
+    text = " ".join(" ".join(parser.parts).split())
     folded = text.casefold()
-    markers = source.get('required_markers') or [source['title']]
+    markers = source.get("required_markers") or [source["title"]]
     if not all(marker.casefold() in folded for marker in markers):
-        raise ValueError('generic competition source drift or challenge page')
-    record_id = source['id']
+        raise ValueError("generic competition source drift or challenge page")
+    record_id = source["id"]
     item = {
-        'id': record_id, 'title': source['title'], 'category': source['category'],
-        'source_url': source['source_url'], 'provider': source['provider'],
-        'status': source.get('status', 'unknown'),
-        'deadline': {'kind': source.get('deadline_kind', 'unknown'), 'at': None},
-        'eligible_countries': source.get('eligible_countries', ['GLOBAL']),
-        'eligibility_text': source['eligibility_text'],
-        'value': {'kind': source.get('value_kind', 'unknown'), 'amount': source.get('value_amount'),
-                  'currency': source.get('value_currency'), 'guaranteed': source.get('value_guaranteed')},
-        'cost': {'fee_amount': None, 'currency': None, 'auto_renewal': None, 'notes': source['cost_notes']},
-        'terms': {'judging_criteria': 'Not extracted; review the current official rules before entering.',
-                  'team_allowed': None, 'submission_format': 'Not extracted; review the current official rules before entering.',
-                  'ip_terms': 'Not extracted; review the current official rules before entering.',
-                  **source.get('normalized_terms', {})},
-        'related_records': [],
-        'provenance': {'evidence_kind': 'captured', 'source_id': source['id'],
-                       'source_record_id': record_id, 'checked_at': checked_at,
-                       'raw_object_key': None, 'bronze_manifest_key': None},
+        "id": record_id,
+        "title": source["title"],
+        "category": source["category"],
+        "source_url": source["source_url"],
+        "provider": source["provider"],
+        "status": source.get("status", "unknown"),
+        "deadline": {"kind": source.get("deadline_kind", "unknown"), "at": None},
+        "eligible_countries": source.get("eligible_countries", ["GLOBAL"]),
+        "eligibility_text": source["eligibility_text"],
+        "value": {
+            "kind": source.get("value_kind", "unknown"),
+            "amount": source.get("value_amount"),
+            "currency": source.get("value_currency"),
+            "guaranteed": source.get("value_guaranteed"),
+        },
+        "cost": {"fee_amount": None, "currency": None, "auto_renewal": None, "notes": source["cost_notes"]},
+        "terms": {
+            "judging_criteria": "Not extracted; review the current official rules before entering.",
+            "team_allowed": None,
+            "submission_format": "Not extracted; review the current official rules before entering.",
+            "ip_terms": "Not extracted; review the current official rules before entering.",
+            **source.get("normalized_terms", {}),
+        },
+        "related_records": [],
+        "provenance": {
+            "evidence_kind": "captured",
+            "source_id": source["id"],
+            "source_record_id": record_id,
+            "checked_at": checked_at,
+            "raw_object_key": None,
+            "bronze_manifest_key": None,
+        },
     }
-    return {'schema_version': source['schema_version'], 'source': source['product'],
-            'retrieved_at': checked_at, 'data_status': 'live', 'items': [item]}
+    return {
+        "schema_version": source["schema_version"],
+        "source": source["product"],
+        "retrieved_at": checked_at,
+        "data_status": "live",
+        "items": [item],
+    }
 
 
 def normalize(raw, source, checked_at):
-    if source.get('generic_html'):
+    if source.get("generic_html"):
         return _normalize_generic(raw, source, checked_at)
     if source["id"] not in {"nasa-space-apps-2026", "cassini-challenges-2026"}:
         raise ValueError("unknown competition source")
